@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="GrabFood_Automation">
 
-<test name="Test_CreateMerchant">
+<test name="Test_RestaurantDetail">
     <classes>
-        <class name="Com.Testcases.Merchant.CreateMerchant" ></class>  
+        <class name="Com.Testcases.RestaurantDetail.RestaurantDetail" ></class>  
     </classes>
 </test>
 
