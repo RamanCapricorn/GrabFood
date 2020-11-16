@@ -168,31 +168,6 @@ public class RestaurantDetail extends BaseTest {
 
 			String PrintValue = customReportName(TestCaseName);
 
-//			Thread.sleep(2000);
-//			waitForElementToBeClickable("location_input");
-//			click("location_input");
-//			clear("location_input");
-//			TypeInField("location_input", data.get("location"));
-//			Thread.sleep(500);
-//			List <WebElement> locations = getLocators(GetObjectPath("location_list"));
-//			if(locations.size()<1) {
-//				clear("location_input");
-//				TypeInField("location_input", data.get("location"));
-//				Thread.sleep(500);
-//			}
-//			
-//			click("location_fourth");
-//			Thread.sleep(100);
-//			test.log(LogStatus.PASS, "User is on Grab food home screen");
-//			CaptureScreen();
-//			KeyPress("Tab");
-//			KeyPress("Tab");
-//			KeyPress("Enter");
-//			
-//			waitForElementToBeClickable("PopularNearYou");
-//			KeyPress("down");
-//			KeyPress("down");
-//			KeyPress("down");
 			test.log(LogStatus.PASS, "User is on Restaurant screen");
 			CaptureScreen();
 			
