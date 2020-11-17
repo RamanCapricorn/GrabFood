@@ -110,18 +110,22 @@ public class RestaurantDetail extends BaseTest {
 			CaptureScreen();
 
 			List <WebElement> tabs = getLocators(GetObjectPath("RestaurantDetailTabs"));
-			for(int i=1; i<=tabs.size(); i++) {
+			if(tabs.size() == 1) {
 				
-				if(driver.findElement(By.cssSelector("div.ant-tabs-nav.ant-tabs-nav-animated > div > div:nth-of-type("+i+")")).isDisplayed()) {
-					driver.findElement(By.cssSelector("div.ant-tabs-nav.ant-tabs-nav-animated > div > div:nth-of-type("+i+")")).click();
-					Thread.sleep(500);
+			}
+			else {
+				for(int i=1; i<=tabs.size(); i++) {
+					
+					if(driver.findElement(By.cssSelector("div.ant-tabs-nav.ant-tabs-nav-animated > div > div:nth-of-type("+i+")")).isDisplayed()) {
+						driver.findElement(By.cssSelector("div.ant-tabs-nav.ant-tabs-nav-animated > div > div:nth-of-type("+i+")")).click();
+						Thread.sleep(500);
+					}
+					else{
+						click("DetailTabsArrow");
+						driver.findElement(By.cssSelector("div.ant-tabs-nav.ant-tabs-nav-animated > div > div:nth-of-type("+i+")")).click();
+						Thread.sleep(500);
+					}
 				}
-				else{
-					click("DetailTabsArrow");
-					driver.findElement(By.cssSelector("div.ant-tabs-nav.ant-tabs-nav-animated > div > div:nth-of-type("+i+")")).click();
-					Thread.sleep(500);
-				}
-				
 			}
 					
 			closeCurrentBrowser();
@@ -173,16 +177,21 @@ public class RestaurantDetail extends BaseTest {
 			
 			List <WebElement> restaurants = getLocators(GetObjectPath("LoadRestaurantList"));
 			HashMap<Integer, String> initialList = new HashMap<Integer, String>();
-			String location = getText("Location");
+			String sheetname = getText("Location").substring(0, 5);
+			addNewSheet(xls, sheetname);
+			addNewColumn(xls, sheetname, "Location");
+			addNewColumn(xls, sheetname, "Restaurant_Name");
+			addNewColumn(xls, sheetname, "URL");
+
 			int i;
 			for(i=1; i<=restaurants.size(); i++) {
 				String restaurantName = driver.findElement(By.cssSelector("div.ant-col-24.RestaurantListCol___1FZ8V.ant-col-md-12.ant-col-lg-6:nth-of-type("+i+") > a > div > div:nth-of-type(2) > h6")).getText();
 				initialList.put(i, restaurantName);
 				
-				Result_to_Xls(xls, "Saint", i+2, restaurantName, "Restaurant_Name");
-				Result_to_Xls(xls, "Saint", i+2, getText("Location"), "Location");
 				String url = driver.findElement(By.cssSelector("div.RestaurantListRow___1SbZY.ant-row-flex > div:nth-of-type("+i+") > a img")).getAttribute("src");
-				Result_to_Xls(xls, "Saint", i+2, url, "URL");
+				Result_to_Xls(xls, sheetname, i+1, getText("Location"), "Location");
+				Result_to_Xls(xls, sheetname, i+1, restaurantName, "Restaurant_Name");
+				Result_to_Xls(xls, sheetname, i+1, url, "URL");
 			}
 
 			moveToElement("LoadMoreBtn");
