@@ -1263,6 +1263,14 @@ public class BaseTest {
 
 		xls.setCellData(SheetName, Result_columnname, RowNum, Result, colSRowNum);
 	}
+	
+	public void addNewSheet(Xlsx_Reader xls, String sheetName) {
+		xls.addSheet(sheetName);
+	}
+	
+	public void addNewColumn(Xlsx_Reader xls, String sheetName, String colName) {
+		xls.addColumn(sheetName, colName);
+	}
 
 	/****************** Reporting *****************************/
 
